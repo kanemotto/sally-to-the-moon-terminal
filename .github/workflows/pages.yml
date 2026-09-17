@@ -1,0 +1,36 @@
+name: Refresh US market data and publish Sally To The Moon
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    # Every hour during the regular US session. GitHub cron uses UTC.
+    # These windows cover both daylight-saving and standard time; the script is harmless outside market hours.
+    - cron: "35 13-21 * * 1-5"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh delayed market scan during US market hours
+        if: github.event_name == 'schedule'
+        run: python3 update_scan.py --market-hours-only
+      - name: Refresh delayed market scan for manual or published updates
+        if: github.event_name != 'schedule'
+        run: python3 update_scan.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - uses: actions/deploy-pages@v4

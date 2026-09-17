@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#06110f">
+  <meta name="description" content="Sally To The Moon Terminal — a focused US stock swing-trading dashboard with delayed market data.">
+  <title>Sally To The Moon Terminal</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1.0.1">
+  <link rel="stylesheet" href="style.css?v=1.0.1">
+</head>
+<body>
+  <header>
+    <a class="brand" href="./" aria-label="Sally To The Moon Terminal home">
+      <i>◐</i>
+      <span><b>SALLY TO THE MOON</b><small>US MARKET TERMINAL</small></span>
+    </a>
+    <div class="live"><i></i> US MARKET · DELAYED</div>
+    <button id="refresh" type="button">↻ Refresh</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">✦ TODAY'S MISSION CONTROL</p>
+        <h1>Find the setup.<br><em>Plan the exit.</em></h1>
+        <p>A focused swing-trading view for Sally's favourite US names.</p>
+      </div>
+      <aside id="best"><small>BEST SETUP NOW</small><div class="loading-line"></div></aside>
+    </section>
+
+    <section class="stats" aria-label="Market scan summary">
+      <div><small>WATCHING</small><b id="watching">—</b><span>US names</span></div>
+      <div><small>BUY WATCH</small><b id="buyWatch">—</b><span>on your list</span></div>
+      <div><small>TURNING UP</small><b id="turning">—</b><span>full scan</span></div>
+      <div><small>LAST SCAN</small><b id="updated">—</b><span>New York time</span></div>
+    </section>
+
+    <section class="controls">
+      <nav id="filters" aria-label="Filter watchlist">
+        <button class="active" type="button" data-filter="ALL">All</button>
+        <button type="button" data-filter="BUY WATCH">Buy watch</button>
+        <button type="button" data-filter="WAIT">Wait</button>
+        <button type="button" data-filter="AVOID">Avoid</button>
+        <button type="button" data-filter="TURNAROUND">↗ Turning up</button>
+      </nav>
+      <div class="inputs">
+        <button class="add-stock" id="addStock" type="button">＋ Add stock</button>
+        <label>⌕<span class="sr-only">Search watchlist</span><input id="search" type="search" placeholder="Find ticker"></label>
+      </div>
+    </section>
+
+    <p id="notice" role="status" aria-live="polite"></p>
+    <section id="grid" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <span>Delayed market data for education—not financial advice. Confirm prices with your broker and always respect the stop.</span>
+    <span>Sally To The Moon · 1% better every orbit</span>
+  </footer>
+
+  <dialog id="addDialog">
+    <form class="add-sheet" method="dialog">
+      <div class="dialog-head">
+        <div><small>US STOCK DIRECTORY</small><h2>Add to mission control</h2></div>
+        <button class="dialog-close" value="cancel" aria-label="Close add stock">×</button>
+      </div>
+      <p id="directoryHelper">Search major US stocks and liquid ETFs.</p>
+      <label class="directory-search">⌕<span class="sr-only">Search all stocks</span><input id="directorySearch" type="search" placeholder="Company name or ticker"></label>
+      <div class="directory-tools"><span id="directoryCount">—</span><button id="turnaroundOnly" type="button" aria-pressed="false">↗ Turning up only</button></div>
+      <p class="early-note">Possible turnaround is an early technical signal, not a prediction.</p>
+      <div id="directoryList" class="directory-list"></div>
+    </form>
+  </dialog>
+
+  <script src="app.js?v=1.0.1" defer></script>
+</body>
+</html>
