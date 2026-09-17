@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500..800&family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   color-scheme: dark;
@@ -25,7 +25,7 @@ body {
     radial-gradient(circle at 5% -10%, rgba(38, 124, 87, .25), transparent 29rem),
     radial-gradient(circle at 88% 2%, rgba(38, 73, 133, .12), transparent 23rem),
     linear-gradient(180deg, #06100d, var(--bg) 34rem);
-  font: 14px/1.45 Inter, system-ui, sans-serif;
+  font: 500 14px/1.45 Inter, system-ui, sans-serif;
   min-height: 100vh;
 }
 body::before {
@@ -74,13 +74,13 @@ header button.spinning { opacity: .55; pointer-events: none; }
 main { max-width: 1360px; margin: auto; padding: 0 22px; position: relative; }
 .hero { padding: 70px 0 45px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 76px; align-items: end; }
 .eyebrow { margin: 0; color: var(--mint); font: 600 10px DM Mono, monospace; letter-spacing: .18em; }
-.hero h1 { font: 400 clamp(52px, 7vw, 90px)/.88 Instrument Serif, Georgia, serif; letter-spacing: -.045em; margin: 18px 0 24px; max-width: 800px; }
-.hero h1 em { color: var(--mint); font-weight: 400; }
+.hero h1 { font: 650 clamp(52px, 7vw, 90px)/.9 Fraunces, Georgia, serif; letter-spacing: -.04em; margin: 18px 0 24px; max-width: 800px; }
+.hero h1 em { color: var(--mint); font-weight: 650; }
 .hero > div > p:last-child { color: var(--muted); font-size: 15px; margin: 0; }
 #best { border-top: 1px solid var(--mint); background: linear-gradient(145deg, rgba(20,45,36,.9), rgba(10,21,17,.92)); padding: 24px; border-radius: 0 0 14px 14px; min-height: 190px; box-shadow: 0 16px 50px rgba(0,0,0,.18); }
 #best > small, .stats small, .entry small, .targets small, .waiting-plan small, .score small { color: var(--muted); font: 500 9px DM Mono, monospace; letter-spacing: .13em; }
 .best-row { display: flex; justify-content: space-between; align-items: center; margin: 16px 0 3px; }
-.best-row > b { font: 400 38px Instrument Serif, Georgia, serif; }
+.best-row > b { font: 650 38px Fraunces, Georgia, serif; }
 #best p { color: var(--muted); margin: 5px 0 18px; }
 .best-levels { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
 .best-levels span { color: var(--dim); font: 500 8px DM Mono, monospace; display: flex; flex-direction: column; gap: 5px; }
@@ -89,7 +89,7 @@ main { max-width: 1360px; margin: auto; padding: 0 22px; position: relative; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 13px; overflow: hidden; margin-bottom: 34px; background: rgba(8,16,14,.55); }
 .stats > div { padding: 17px 21px; border-right: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; min-height: 70px; }
 .stats > div:last-child { border-right: 0; }
-.stats b { font: 400 25px Instrument Serif, Georgia, serif; grid-row: 1 / 3; grid-column: 2; }
+.stats b { font: 650 25px Fraunces, Georgia, serif; grid-row: 1 / 3; grid-column: 2; }
 .stats span { color: var(--dim); font: 500 9px DM Mono, monospace; margin-top: 5px; }
 
 .controls { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 10px; }
@@ -120,7 +120,7 @@ nav button.active { background: #14251f; color: var(--mint); }
 .pill.avoid { color: var(--red); border-color: rgba(255,113,133,.3); background: rgba(255,113,133,.04); }
 .turn-badge { color: var(--blue); border: 1px solid rgba(121,170,255,.3); background: rgba(121,170,255,.05); }
 .price { margin: 20px 0 12px; }
-.price > span > b { font: 400 30px Instrument Serif, Georgia, serif; }
+.price > span > b { font: 650 30px Fraunces, Georgia, serif; }
 .price small { font: 500 10px DM Mono, monospace; margin-top: 3px; }
 .price svg { width: 145px; max-width: 45%; }
 .spark-base { stroke: #182620; stroke-width: 1; }
@@ -129,7 +129,7 @@ nav button.active { background: #14251f; color: var(--mint); }
 .improving { color: var(--blue) !important; }
 .score { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 13px; margin-bottom: 13px; }
 .score span { display: flex; align-items: baseline; gap: 7px; }
-.score span b { font: 500 18px Instrument Serif, Georgia, serif; }
+.score span b { font: 650 18px Fraunces, Georgia, serif; }
 .score span em { color: var(--dim); font: 500 8px DM Mono, monospace; font-style: normal; }
 .score > div { height: 3px; background: #17231f; border-radius: 3px; overflow: hidden; }
 .score > div i { display: block; height: 100%; background: linear-gradient(90deg, #247d59, var(--mint)); }
@@ -150,7 +150,7 @@ nav button.active { background: #14251f; color: var(--mint); }
 .remove { position: absolute; right: 11px; bottom: 9px; width: 23px; height: 23px; border: 1px solid #2a3b35; background: #0b1512; color: #667a72; border-radius: 5px; cursor: pointer; z-index: 2; }
 .remove:hover { color: var(--red); border-color: var(--red); }
 .empty { grid-column: 1 / -1; min-height: 260px; display: grid; place-content: center; justify-items: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 13px; }
-.empty i { color: var(--mint); font: 400 38px Instrument Serif, serif; }
+.empty i { color: var(--mint); font: 650 38px Fraunces, Georgia, serif; }
 .empty b { color: var(--ink); margin-top: 5px; }
 .empty span { font-size: 11px; margin-top: 5px; }
 
@@ -161,7 +161,7 @@ dialog::backdrop { background: rgba(0,7,5,.77); backdrop-filter: blur(5px); }
 .add-sheet { padding: 24px; }
 .dialog-head { display: flex; justify-content: space-between; align-items: flex-start; }
 .dialog-head small { color: var(--mint); font: 500 9px DM Mono, monospace; letter-spacing: .15em; }
-.dialog-head h2 { margin: 5px 0 0; font: 400 36px Instrument Serif, Georgia, serif; }
+.dialog-head h2 { margin: 5px 0 0; font: 650 36px Fraunces, Georgia, serif; }
 .dialog-close { width: 34px; height: 34px; border: 1px solid var(--line); background: #101c18; color: var(--ink); border-radius: 7px; cursor: pointer; font-size: 20px; }
 #directoryHelper { color: var(--muted); font-size: 12px; }
 .directory-search { margin-top: 18px; }
