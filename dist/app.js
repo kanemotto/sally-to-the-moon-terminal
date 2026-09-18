@@ -153,9 +153,11 @@ async function load() {
   $("#refresh").classList.add("spinning");
   try {
     const bust = Date.now();
+    const productionDataRoot = "https://raw.githubusercontent.com/kanemotto/sally-to-the-moon-terminal/main/dist";
+    const dataRoot = window.location.hostname === "kanemotto.github.io" ? productionDataRoot : ".";
     const [scanResponse, directoryResponse, defaultResponse] = await Promise.all([
-      fetch(`scan.json?v=${bust}`, { cache: "no-store" }),
-      fetch(`stocks.json?v=${bust}`, { cache: "no-store" }),
+      fetch(`${dataRoot}/scan.json?v=${bust}`, { cache: "no-store" }),
+      fetch(`${dataRoot}/stocks.json?v=${bust}`, { cache: "no-store" }),
       fetch(`watchlist.json?v=${bust}`, { cache: "no-store" }),
     ]);
     if (!scanResponse.ok || !directoryResponse.ok || !defaultResponse.ok) throw new Error("scan unavailable");
