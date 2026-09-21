@@ -342,6 +342,12 @@
     "universe": "S&P 500"
   },
   {
+    "symbol": "BE",
+    "name": "Bloom Energy",
+    "sector": "Industrials",
+    "universe": "S&P 500"
+  },
+  {
     "symbol": "BEN",
     "name": "Franklin Resources",
     "sector": "Financials",
@@ -375,12 +381,6 @@
     "symbol": "BKR",
     "name": "Baker Hughes",
     "sector": "Energy",
-    "universe": "S&P 500"
-  },
-  {
-    "symbol": "BLDR",
-    "name": "Builders FirstSource",
-    "sector": "Industrials",
     "universe": "S&P 500"
   },
   {
@@ -1470,6 +1470,12 @@
     "universe": "S&P 500"
   },
   {
+    "symbol": "ILMN",
+    "name": "Illumina, Inc.",
+    "sector": "Health Care",
+    "universe": "S&P 500"
+  },
+  {
     "symbol": "INCY",
     "name": "Incyte",
     "sector": "Health Care",
@@ -2142,6 +2148,12 @@
     "universe": "S&P 500"
   },
   {
+    "symbol": "P",
+    "name": "Everpure",
+    "sector": "Information Technology",
+    "universe": "S&P 500"
+  },
+  {
     "symbol": "PANW",
     "name": "Palo Alto Networks",
     "sector": "Information Technology",
@@ -2616,12 +2628,6 @@
     "universe": "S&P 500"
   },
   {
-    "symbol": "TAP",
-    "name": "Molson Coors Beverage Company",
-    "sector": "Consumer Staples",
-    "universe": "S&P 500"
-  },
-  {
     "symbol": "TDG",
     "name": "TransDigm Group",
     "sector": "Industrials",
@@ -2745,12 +2751,6 @@
     "symbol": "TT",
     "name": "Trane Technologies",
     "sector": "Industrials",
-    "universe": "S&P 500"
-  },
-  {
-    "symbol": "TTD",
-    "name": "Trade Desk (The)",
-    "sector": "Communication Services",
     "universe": "S&P 500"
   },
   {
