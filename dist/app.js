@@ -50,7 +50,8 @@ function renderSummary() {
   $("#turning").textContent = state.scan.quotes.filter((quote) => quote.turnaround).length;
   $("#updated").textContent = state.scan.updatedShort || "Pending";
   const status = $(".live");
-  status.innerHTML = `<i></i> US MARKET · ${esc(state.scan.marketSignal || "DELAYED").toUpperCase()} ${state.scan.marketScore ?? "—"}/100`;
+  const session = esc(state.scan.marketSession || "DELAYED").toUpperCase();
+  status.innerHTML = `<i></i> US MARKET · ${session} · ${esc(state.scan.marketSignal || "DELAYED").toUpperCase()} ${state.scan.marketScore ?? "—"}/100`;
 }
 
 function renderBest() {

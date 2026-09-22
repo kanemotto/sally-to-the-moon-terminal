@@ -8,9 +8,10 @@ on:
       - "dist/stocks.json"
   workflow_dispatch:
   schedule:
-    # Every hour during the regular US session. GitHub cron uses UTC.
-    # These windows cover both daylight-saving and standard time; the script is harmless outside market hours.
-    - cron: "35 13-21 * * 1-5"
+    # Every 30 minutes across the possible UTC span for the 4 AM–8 PM New York
+    # extended session. The script applies the exact weekday/session guard in ET,
+    # so this remains correct through daylight-saving changes.
+    - cron: "5,35 0-1,8-23 * * *"
 
 permissions:
   contents: write
@@ -26,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Refresh delayed market scan during US market hours
+      - name: Refresh delayed market scan during US extended hours
         if: github.event_name == 'schedule'
-        run: python3 update_scan.py --market-hours-only
+        run: python3 update_scan.py --extended-hours-only
       - name: Refresh delayed market scan for manual or published updates
         if: github.event_name != 'schedule'
         run: python3 update_scan.py

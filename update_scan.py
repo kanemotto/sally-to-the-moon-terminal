@@ -130,7 +130,7 @@ def atr(highs: list[float], lows: list[float], closes: list[float], length: int 
 
 def yahoo_chart(symbol: str, attempts: int = 3) -> dict:
     params = urllib.parse.urlencode(
-        {"range": "6mo", "interval": "1d", "includePrePost": "false", "events": "div,splits"}
+        {"range": "6mo", "interval": "1d", "includePrePost": "true", "events": "div,splits"}
     )
     last_error = None
     for attempt in range(attempts):
@@ -161,7 +161,28 @@ def round_price(value: float) -> float:
     return round(value, 2 if value >= 1 else 4)
 
 
-def analyze(item: dict) -> dict:
+def numeric(value: object) -> float | None:
+    try:
+        number = float(value)
+        return number if math.isfinite(number) else None
+    except (TypeError, ValueError):
+        return None
+
+
+def market_session(now: datetime) -> str:
+    if now.weekday() >= 5:
+        return "CLOSED"
+    minutes = now.hour * 60 + now.minute
+    if 240 <= minutes < 570:
+        return "PRE-MARKET"
+    if 570 <= minutes < 960:
+        return "REGULAR"
+    if 960 <= minutes < 1200:
+        return "AFTER HOURS"
+    return "CLOSED"
+
+
+def analyze(item: dict, session: str) -> dict:
     symbol = item["symbol"]
     chart = yahoo_chart(symbol)
     rows = chart["rows"]
@@ -169,6 +190,12 @@ def analyze(item: dict) -> dict:
     highs = [row[1] for row in rows]
     lows = [row[2] for row in rows]
     volumes = [row[3] for row in rows]
+    meta = chart["meta"]
+    regular_price = numeric(meta.get("regularMarketPrice"))
+    extended_price = numeric(meta.get("fulldayPrice"))
+    live_price = extended_price if session in {"PRE-MARKET", "AFTER HOURS"} else regular_price
+    if session != "CLOSED" and live_price and live_price > 0:
+        closes[-1] = live_price
     close, previous = closes[-1], closes[-2]
     ma20, ma50 = sma(closes, 20), sma(closes, 50)
     old_ma20 = statistics.fmean(closes[-25:-5])
@@ -177,7 +204,14 @@ def analyze(item: dict) -> dict:
     volume_avg = statistics.fmean(volumes[-21:-1]) or 1
     volume_ratio = volumes[-1] / volume_avg
     atr14 = atr(highs, lows, closes)
-    change = ((close / previous) - 1) * 100
+    regular_change = numeric(meta.get("regularMarketChangePercent"))
+    extended_change = numeric(meta.get("fulldayChangePercent"))
+    if session in {"PRE-MARKET", "AFTER HOURS"} and extended_change is not None:
+        change = extended_change
+    elif session == "REGULAR" and regular_change is not None:
+        change = regular_change
+    else:
+        change = ((close / previous) - 1) * 100
     change5 = ((close / closes[-6]) - 1) * 100
     high20_prior = max(highs[-21:-1])
     support = min(lows[-20:])
@@ -216,6 +250,7 @@ def analyze(item: dict) -> dict:
         "name": item["name"],
         "sector": item.get("sector", ""),
         "universe": item.get("universe", ""),
+        "session": session,
         "price": round_price(close),
         "changePercent": round(change, 2),
         "score": score,
@@ -247,19 +282,19 @@ def market_summary(quotes: list[dict]) -> tuple[int, str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--market-hours-only", action="store_true")
+    parser.add_argument("--extended-hours-only", action="store_true")
     args = parser.parse_args()
     market_now = datetime.now(ZoneInfo("America/New_York"))
-    open_minutes = market_now.hour * 60 + market_now.minute
-    if args.market_hours_only and (market_now.weekday() >= 5 or not 570 <= open_minutes <= 970):
-        print("US regular session is closed; keeping the previous scan.")
+    session = market_session(market_now)
+    if args.extended_hours_only and session == "CLOSED":
+        print("US extended session is closed; keeping the previous scan.")
         return
     DIST.mkdir(parents=True, exist_ok=True)
     stocks = refresh_universe()
     max_workers = min(12, max(4, (os.cpu_count() or 4)))
     quotes, errors = [], []
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
-        jobs = {pool.submit(analyze, item): item for item in stocks}
+        jobs = {pool.submit(analyze, item, session): item for item in stocks}
         for job in as_completed(jobs):
             item = jobs[job]
             try:
@@ -275,6 +310,7 @@ def main() -> None:
         "updatedShort": now.strftime("%b %-d · %-I:%M %p"),
         "marketScore": market_score,
         "marketSignal": market_signal,
+        "marketSession": session,
         "universeCount": len(stocks),
         "quotes": quotes,
         "errors": errors,
