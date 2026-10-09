@@ -732,12 +732,6 @@
     "universe": "S&P 500"
   },
   {
-    "symbol": "CTVA",
-    "name": "Corteva",
-    "sector": "Materials",
-    "universe": "S&P 500"
-  },
-  {
     "symbol": "CVNA",
     "name": "Carvana",
     "sector": "Consumer Discretionary",
@@ -2298,12 +2292,6 @@
     "universe": "S&P 500"
   },
   {
-    "symbol": "PSKY",
-    "name": "Paramount Skydance Corporation",
-    "sector": "Communication Services",
-    "universe": "S&P 500"
-  },
-  {
     "symbol": "PSX",
     "name": "Phillips 66",
     "sector": "Energy",
@@ -2469,6 +2457,12 @@
     "symbol": "SJM",
     "name": "J.M. Smucker Company (The)",
     "sector": "Consumer Staples",
+    "universe": "S&P 500"
+  },
+  {
+    "symbol": "SKYD",
+    "name": "Skydance Corporation",
+    "sector": "Communication Services",
     "universe": "S&P 500"
   },
   {
@@ -2760,6 +2754,12 @@
     "universe": "S&P 500"
   },
   {
+    "symbol": "TWLO",
+    "name": "Twilio",
+    "sector": "Information Technology",
+    "universe": "S&P 500"
+  },
+  {
     "symbol": "TXN",
     "name": "Texas Instruments",
     "sector": "Information Technology",
@@ -2922,6 +2922,12 @@
     "universe": "S&P 500"
   },
   {
+    "symbol": "VYLR",
+    "name": "Vylor",
+    "sector": "Consumer Staples",
+    "universe": "S&P 500"
+  },
+  {
     "symbol": "VZ",
     "name": "Verizon",
     "sector": "Communication Services",
@@ -2937,12 +2943,6 @@
     "symbol": "WAT",
     "name": "Waters Corporation",
     "sector": "Health Care",
-    "universe": "S&P 500"
-  },
-  {
-    "symbol": "WBD",
-    "name": "Warner Bros. Discovery",
-    "sector": "Communication Services",
     "universe": "S&P 500"
   },
   {
