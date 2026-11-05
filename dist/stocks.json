@@ -1656,12 +1656,6 @@
     "universe": "S&P 500"
   },
   {
-    "symbol": "KVUE",
-    "name": "Kenvue",
-    "sector": "Consumer Staples",
-    "universe": "S&P 500"
-  },
-  {
     "symbol": "L",
     "name": "Loews Corporation",
     "sector": "Financials",
@@ -2097,6 +2091,12 @@
     "symbol": "OKE",
     "name": "Oneok",
     "sector": "Energy",
+    "universe": "S&P 500"
+  },
+  {
+    "symbol": "OKTA",
+    "name": "Okta, Inc.",
+    "sector": "Information Technology",
     "universe": "S&P 500"
   },
   {
